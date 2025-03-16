@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Webpage</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .hidden { display: none; }
+        .modal { 
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; padding: 20px; border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2>JavaScript Interactive Elements</h2>
+    
+    <!-- Toggle Text -->
+    <p id="text">This text can be toggled.</p>
+    <button id="toggleBtn">Hide Text</button>
+    
+    <!-- Form Validation -->
+    <h3>Form Validation</h3>
+    <form id="myForm">
+        <input type="text" id="nameField" placeholder="Enter your name">
+        <button type="submit">Submit</button>
+    </form>
+    <p id="formMessage"></p>
+    
+    <!-- Modal Popup -->
+    <button id="openModal">Open Modal</button>
+    <div id="modal" class="modal hidden">
+        <p>This is a modal!</p>
+        <button id="closeModal">Close</button>
+    </div>
+    
+    <script>
+        // Toggle text visibility
+        document.getElementById("toggleBtn").addEventListener("click", function() {
+            let text = document.getElementById("text");
+            if (text.style.display === "none") {
+                text.style.display = "block";
+                this.textContent = "Hide Text";
+            } else {
+                text.style.display = "none";
+                this.textContent = "Show Text";
+            }
+        });
+        
+        // Form validation
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            let name = document.getElementById("nameField").value.trim();
+            let message = document.getElementById("formMessage");
+            if (name === "") {
+                event.preventDefault();
+                message.textContent = "Name field cannot be empty!";
+                message.style.color = "red";
+            } else {
+                message.textContent = "Form submitted successfully!";
+                message.style.color = "green";
+            }
+        });
+        
+        // Modal functionality
+        document.getElementById("openModal").addEventListener("click", function() {
+            document.getElementById("modal").classList.remove("hidden");
+        });
+        
+        document.getElementById("closeModal").addEventListener("click", function() {
+            document.getElementById("modal").classList.add("hidden");
+        });
+    </script>
+</body>
+</html>
